@@ -13,18 +13,23 @@
 #' @param unlink.out logical. Should output directory and all files be deleted
 #'   before function return? Default = TRUE
 #' @return Data frame.
+#' @example
+#' /dontrun{
+#' parseQrte("QualtricsRaw/Esoteric_Analogies.zip", "parser/parser.py")
+#' }
 parseQrte <- function(survey.zip, parser.py, ...,
                       out.dir = "qrteout", unlink.out = TRUE) {
 
   # Error handling
-  py.version <- system("python --version", intern = T, show.output.on.console = F)
-  if (!grepl("Python 2.7", py.version)) {
-    stop("Your system is running ", py.version, " by default.
-         QRTEngine parser requires that Python 2.7.x is running by default.
-         Please change the default Python version on your system to 2.7.x and try again.
-         Download Python 2.7.11 from https://www.python.org/downloads/release/python-2711/
-         if you do not have Python 2.7.x installed on your system.")
-  }
+  # !! Seems to work on Windows but not Mac. Error handling to be done posthoc for moment.
+#   py.version <- system("python --version", intern = T, show.output.on.console = F)
+#   if (!grepl("Python 2.7", py.version)) {
+#     stop("Your system is running ", py.version, " by default.
+#          QRTEngine parser requires that Python 2.7.x is running by default.
+#          Please change the default Python version on your system to 2.7.x and try again.
+#          Download Python 2.7.11 from https://www.python.org/downloads/release/python-2711/
+#          if you do not have Python 2.7.x installed on your system.")
+#   }
 
   # Get name of survey
   survey.name <- basename(survey.zip)
@@ -36,12 +41,12 @@ parseQrte <- function(survey.zip, parser.py, ...,
   survey.csv <- file.path(out.dir, paste0(survey.name, ".csv"))
 
   # Get survey csv.gz outputted by th QRTEngine python parser
-  system(paste("python", parser.py, survery.csv))
-  survery.csv.gz <- file.path(out.dir, paste0(survey.name, ".csv.gz"))
-  survery.csv.gz <- gzfile(survery.csv.gz)
+  system(paste("python", parser.py, survey.csv))
+  survey.csv.gz <- file.path(out.dir, paste0(survey.name, "_out.csv.gz"))
+  survey.csv.gz <- gzfile(survey.csv.gz)
 
   # Get data after parsing
-  data <- readLines(survery.csv.gz)
+  data <- readLines(survey.csv.gz)
   data <- textConnection(data)
   data <- read.table(data, header = T, sep = ",", ...)
 

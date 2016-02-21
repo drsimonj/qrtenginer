@@ -1,9 +1,12 @@
 Package: qrtenginer
 Type: Package
 Title: Parse and analyse QRTEngine data
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Date: 2016-02-20
-Author: Simon A Jackson
+Authors@R: person("Simon A", "Jackson", email = "simon.jackson@sydney.edu.au", role = c("aut", "cre"))
 Description: <TO BE COMPLETED>
 License: <TO BE COMPLETED>
+URL: https://github.com/drsimonj/qrtenginer
+BugReports: https://github.com/drsimonj/qrtenginer/issues
 LazyData: TRUE
+RoxygenNote: 5.0.1
