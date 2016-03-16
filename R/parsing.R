@@ -1,4 +1,28 @@
-#' Parse QRTEngine data.
+#' Extract data from the parsed .csv.gz file
+#'
+#' Extract the data from a QRTEngine survey that has already been parsed into a
+#' .csv.gz file. The parsing can be done via the python parser, for which a
+#' function in this package exists - parseQrte(). Or, the online QRTEninge
+#' parser can be used. See: https://parser.qrtengine.com/
+#'
+#' @export
+#' @param survey.csv.gz String. File path to the .csv.gz file.
+extractQrteGz <- function(survey.csv.gz) {
+  survey.csv.gz <- gzfile(survey.csv.gz)
+
+  # Get data after parsing
+  data <- readLines(survey.csv.gz)
+  data <- textConnection(data)
+  data <- read.table(data, header = T, sep = ",", ...)
+
+  # Rename parsed data columns. colnames in QRTE have '[' and ']', which above
+  # command outputs as '.' So remove trailing '.' to avoid confusion
+  colnames(data) <- gsub("\\.$", "", colnames(data))
+
+  return (data)
+}
+
+#' Parse QRTEngine data using Python.
 #'
 #' Parse QRTEngine data downloaded from Qualtrics as a zip file containing a csv
 #' file. This function requires that Python 2.7 is running on your machine by
@@ -40,19 +64,11 @@ parseQrte <- function(survey.zip, parser.py, ...,
   unzip(survey.zip, exdir = out.dir)
   survey.csv <- file.path(out.dir, paste0(survey.name, ".csv"))
 
-  # Get survey csv.gz outputted by th QRTEngine python parser
+  # Use survey csv.gz outputted by python parser to extract data
+  # and data
   system(paste("python", parser.py, survey.csv))
   survey.csv.gz <- file.path(out.dir, paste0(survey.name, "_out.csv.gz"))
-  survey.csv.gz <- gzfile(survey.csv.gz)
-
-  # Get data after parsing
-  data <- readLines(survey.csv.gz)
-  data <- textConnection(data)
-  data <- read.table(data, header = T, sep = ",", ...)
-
-  # Rename parsed data columns. colnames in QRTE have '[' and ']', which above
-  # command outputs as '.' So remove trailing '.' to avoid confusion
-  colnames(data) <- gsub("\\.$", "", colnames(data))
+  data <- extractQrteGz(survey.csv.gz)
 
   # Delete output files if requested
   if (unlink.out) {
