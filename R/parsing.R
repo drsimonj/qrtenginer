@@ -7,7 +7,13 @@
 #'
 #' @export
 #' @param survey.csv.gz String. File path to the .csv.gz file.
-extractQrteGz <- function(survey.csv.gz) {
+#' @param ... Optional arguments to pass to read.table()
+#' @return Data frame.
+#' @examples
+#' \dontrun{
+#' extractQrteGz("QualtricsParsed/Esoteric_Analogies.csv.gz")
+#' }
+extractQrteGz <- function(survey.csv.gz, ...) {
   survey.csv.gz <- gzfile(survey.csv.gz)
 
   # Get data after parsing
@@ -37,8 +43,8 @@ extractQrteGz <- function(survey.csv.gz) {
 #' @param unlink.out logical. Should output directory and all files be deleted
 #'   before function return? Default = TRUE
 #' @return Data frame.
-#' @example
-#' /dontrun{
+#' @examples
+#' \dontrun{
 #' parseQrte("QualtricsRaw/Esoteric_Analogies.zip", "parser/parser.py")
 #' }
 parseQrte <- function(survey.zip, parser.py, ...,
@@ -68,7 +74,7 @@ parseQrte <- function(survey.zip, parser.py, ...,
   # and data
   system(paste("python", parser.py, survey.csv))
   survey.csv.gz <- file.path(out.dir, paste0(survey.name, "_out.csv.gz"))
-  data <- extractQrteGz(survey.csv.gz)
+  data <- extractQrteGz(survey.csv.gz, ...)
 
   # Delete output files if requested
   if (unlink.out) {

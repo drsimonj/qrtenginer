@@ -2,7 +2,7 @@
 % Please edit documentation in R/parsing.R
 \name{parseQrte}
 \alias{parseQrte}
-\title{Parse QRTEngine data.}
+\title{Parse QRTEngine data using Python.}
 \usage{
 parseQrte(survey.zip, parser.py, ..., out.dir = "qrteout",
   unlink.out = TRUE)
@@ -27,5 +27,10 @@ Data frame.
 Parse QRTEngine data downloaded from Qualtrics as a zip file containing a csv
 file. This function requires that Python 2.7 is running on your machine by
 default.
+}
+\examples{
+\dontrun{
+parseQrte("QualtricsRaw/Esoteric_Analogies.zip", "parser/parser.py")
+}
 }
 
