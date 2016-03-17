@@ -10,3 +10,6 @@ URL: https://github.com/drsimonj/qrtenginer
 BugReports: https://github.com/drsimonj/qrtenginer/issues
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

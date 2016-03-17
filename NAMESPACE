@@ -2,3 +2,6 @@
 
 export(extractQrteGz)
 export(parseQrte)
+export(scoreQrte)
+export(scoreRts)
+export(validateRts)

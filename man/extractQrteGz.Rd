@@ -4,10 +4,12 @@
 \alias{extractQrteGz}
 \title{Extract data from the parsed .csv.gz file}
 \usage{
-extractQrteGz(survey.csv.gz)
+extractQrteGz(survey.csv.gz, ...)
 }
 \arguments{
 \item{survey.csv.gz}{String. File path to the .csv.gz file.}
+
+\item{...}{Optional arguments to pass to read.table()}
 }
 \value{
 Data frame.
