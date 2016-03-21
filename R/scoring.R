@@ -130,8 +130,16 @@ scoreQrte <- function(data, ...) {
   }
 
   # If Running Letters
-  else if (all(grepl("SWITCHING", block.ids))) {
-
+  else if (all(grepl("RUNNING", block.ids))) {
+    tmp <- by(data$Stimulus.ACC, data$ResponseID,
+              function(x) {
+                n.correct  <- sum(x)
+                n.wrong    <- sum(1 - x)
+                return (c(n.correct = n.correct, n.wrong = n.wrong))
+              }
+    )
+    tmp <- do.call(rbind, tmp)
+    tmp <- as.data.frame(tmp)
   }
 
   # If Esoteric Analogies Test
