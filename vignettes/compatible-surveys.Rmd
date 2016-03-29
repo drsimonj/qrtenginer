@@ -1,5 +1,5 @@
 ---
-title: "Compatible surveys
+title: "Description of the Compatible Surveys"
 author: "Simon A Jackson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -32,4 +32,3 @@ This vignette goes into detail about tests available to be used with the qrtengi
 # Raven's Advanced Progressive Matrices
 
 # Mini IPIP
-
