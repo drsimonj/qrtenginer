@@ -1,0 +1,35 @@
+---
+title: "Compatible surveys
+author: "Simon A Jackson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+A suite of tests have been built to be compatible with the scoring functions provided by the qrtengine package. There are two purposes for these tests being available. One is so that researchers can quickly deploy and analyse data without the burdens of programming. The second is to encourage researchers to work with a standard test suite so that suitable comparisons can be made across studies.
+
+This vignette goes into detail about tests available to be used with the qrtenginer scoring functions. For each, this includes:
+
+* A description of the test and its origins. 
+* Details about adjustable parameters.
+* Details about the scores provided by qrtenginer.
+
+# ID Info and Consent
+
+# Simple Reaction Time
+
+# Flanker
+
+# Task Switching
+
+# Running Letter Span
+
+# Esoteric Analogies
+
+# Raven's Advanced Progressive Matrices
+
+# Mini IPIP
+
