@@ -134,7 +134,7 @@ To check that you've installed this correctly, run the following command in *R*:
 system("python --version")
 ```
 
-If you see *Python 2.7.11*, or some other version of python starting with 2.7, then you're good to go. If not, then you'll have to figure out a way to get Python 2.7 installed and running on your system by default. If you can't, then simple go to the instructions for [using the online parser](#onlineParser). The picture below shows what my terminal (on a Mac) looked like when checking this.
+If you see *Python 2.7.11*, or some other version of python starting with 2.7, then you're good to go. If not, then you'll have to figure out a way to get Python 2.7 installed and running on your system by default. If you can't, then simple go to the instructions for [using the online parser](#onlineParser).
 
 If this is all setup, the next thing you want to do is download the QRTEngine python parser. To do this, enter <https://github.com/ErwinHaasnoot/qrteparser-webservice/archive/master.zip> into your web browser. This will download a .zip file containing everything for the python parser. Extract this folder to somewhere accessible. Inside this folder will be a file called *parser.py*. Check this file is there and remember it.
 

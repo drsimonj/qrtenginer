@@ -101,7 +101,7 @@ scoreQrte <- function(data, ...) {
   else if (all(grepl("SWITCHING", block.ids))) {
 
     # Order trials based on appearance
-    data <- data[order(data$ResponseID, data$SWITCHINGtest.TrialNr),]
+    data <- data[order(data$ResponseID, data$SWITCHINGtest.TrialNr), ]
 
     # Assign trial type to each row
     x <- data$instruction
@@ -154,6 +154,19 @@ scoreQrte <- function(data, ...) {
               }
            )
     tmp <- do.call(rbind, tmp)
+    tmp <- as.data.frame(tmp)
+  }
+
+  else if (all(grepl("MINIIPIP", block.ids))) {
+    tmp <- by(data[, c("Stimulus.RESP", "key")], data[, c("ResponseID", "factor")],
+             function(x) {
+               responses <- x$Stimulus.RESP
+               responses[x$key == -1] <- 6 - responses[x$key == -1]
+
+               return (c(score = sum(responses)))
+             }
+    )
+    tmp <- tmp[1:length(unique(data$ResponseID)), ]
     tmp <- as.data.frame(tmp)
   }
 
