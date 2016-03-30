@@ -87,9 +87,11 @@ scoreQrte <- function(data, ...) {
 
     for (i in seq(dim(tmp))) {
       var.label <- names(dimnames(tmp))[i]
-      n.rep.each <- tail(cumprod(dim(tmp)[-c(1:i)]), 1)
-      if(length(n.rep.each) == 0)
+      if (i == 1) {
         n.rep.each <- 1
+      } else {
+        n.rep.each <- tail(cumprod(dim(tmp)[-c(i:length(dim(tmp)))]), 1)
+      }
       var.dat <- rep(dimnames(tmp)[[i]], each = n.rep.each)
       tmp.dat[, var.label] <- var.dat
     }
@@ -118,9 +120,11 @@ scoreQrte <- function(data, ...) {
 
     for (i in seq(dim(tmp))) {
       var.label <- names(dimnames(tmp))[i]
-      n.rep.each <- tail(cumprod(dim(tmp)[-c(1:i)]), 1)
-      if(length(n.rep.each) == 0)
+      if (i == 1) {
         n.rep.each <- 1
+      } else {
+        n.rep.each <- tail(cumprod(dim(tmp)[-c(i:length(dim(tmp)))]), 1)
+      }
       var.dat <- rep(dimnames(tmp)[[i]], each = n.rep.each)
       tmp.dat[, var.label] <- var.dat
     }
