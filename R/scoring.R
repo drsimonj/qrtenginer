@@ -161,6 +161,7 @@ scoreQrte <- function(data, ...) {
     tmp <- as.data.frame(tmp)
   }
 
+  # If Mini-IPIP
   else if (all(grepl("MINIIPIP", block.ids))) {
     tmp <- by(data[, c("Stimulus.RESP", "key")], data[, c("ResponseID", "factor")],
              function(x) {
